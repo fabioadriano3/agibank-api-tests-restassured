@@ -60,6 +60,20 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- Forçar engine explícito (evita falha de discovery em alguns CI/classpaths) -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+
     <!-- Allure: JUnit5 -->
     <dependency>
       <groupId>io.qameta.allure</groupId>
@@ -109,9 +123,12 @@
         <version>${surefire.version}</version>
         <configuration>
           <useModulePath>false</useModulePath>
+          <includes>
+            <include>**/*Test.java</include>
+            <include>**/*Tests.java</include>
+          </includes>
           <systemPropertyVariables>
             <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-            <dog.api.env>${env:dev}</dog.api.env>
           </systemPropertyVariables>
           <!-- Parallel execution: methods (complemento ao junit-platform.properties) -->
           <parallel>methods</parallel>

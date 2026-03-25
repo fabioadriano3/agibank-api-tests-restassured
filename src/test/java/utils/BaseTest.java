@@ -16,12 +16,20 @@ public abstract class BaseTest {
     protected static DogApiService dogApiService;
     protected static ObjectMapper objectMapper;
 
-    @BeforeAll
-    static void globalSetUp() {
+    protected static synchronized void ensureInitialized() {
+        if (environment != null && dogApiService != null && objectMapper != null) {
+            return;
+        }
+
         environment = EnvironmentConfigLoader.load();
         dogApiService = new DogApiService(RequestSpecificationFactory.create(environment));
         objectMapper = new ObjectMapper()
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    }
+
+    @BeforeAll
+    static void globalSetUp() {
+        ensureInitialized();
     }
 }
 

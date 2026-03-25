@@ -28,7 +28,7 @@ jobs:
           cache: "maven"
 
       - name: Run tests + generate Allure report
-        run: mvn -B -ntp clean test verify
+        run: mvn -B -ntp clean test verify -Ddog.api.env=dev
 
       - name: Upload Allure report
         if: always()

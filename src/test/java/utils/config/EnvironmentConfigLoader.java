@@ -15,6 +15,9 @@ public final class EnvironmentConfigLoader {
 
     public static TestEnvironment load() {
         String envName = System.getProperty("dog.api.env", DEFAULT_ENV);
+        if (envName == null || envName.isBlank()) {
+            envName = DEFAULT_ENV;
+        }
         String configPath = CONFIG_PATH_PREFIX + envName + CONFIG_PATH_SUFFIX;
 
         Properties properties = new Properties();

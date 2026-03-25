@@ -44,6 +44,7 @@ public class DogApiBreedImagesTest extends BaseTest {
     }
 
     private Stream<String> validBreedsProvider() {
+        ensureInitialized();
         List<String> breeds = BreedDataFactory.sampleValidBreeds(
                 dogApiService,
                 environment.breedSampleCount(),
@@ -71,6 +72,7 @@ public class DogApiBreedImagesTest extends BaseTest {
     }
 
     private Stream<String> invalidBreedsProvider() {
+        ensureInitialized();
         // quantidade similar ao sampleCount para manter execução leve.
         int count = Math.max(3, environment.breedSampleCount());
         return BreedDataFactory.invalidBreeds(count);
