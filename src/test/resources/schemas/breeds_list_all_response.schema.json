@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Breeds List All Response",
+  "type": "object",
+  "required": ["message"],
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "message": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}
+
