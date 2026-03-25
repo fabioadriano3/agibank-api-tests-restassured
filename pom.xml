@@ -15,6 +15,7 @@
     <rest.assured.version>5.5.7</rest.assured.version>
     <json.schema.validator.version>5.5.7</json.schema.validator.version>
     <junit.jupiter.version>5.14.3</junit.jupiter.version>
+    <junit.platform.version>1.14.3</junit.platform.version>
 
     <allure.junit5.version>2.31.0</allure.junit5.version>
     <allure.restassured.version>2.29.1</allure.restassured.version>
@@ -60,7 +61,21 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Forçar engine explícito (evita falha de discovery em alguns CI/classpaths) -->
+    <!-- Versões explícitas do JUnit Platform (evita mismatch engine vs launcher) -->
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-engine</artifactId>
+      <version>${junit.platform.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.platform</groupId>
+      <artifactId>junit-platform-launcher</artifactId>
+      <version>${junit.platform.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <!-- (Mantido) Forçar engine explícito -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
@@ -80,6 +95,17 @@
       <artifactId>allure-junit5</artifactId>
       <version>${allure.junit5.version}</version>
       <scope>test</scope>
+      <exclusions>
+        <!-- Evita conflito de versões do JUnit Platform (fixa o mismatch da discovery) -->
+        <exclusion>
+          <groupId>org.junit.platform</groupId>
+          <artifactId>junit-platform-engine</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.junit.platform</groupId>
+          <artifactId>junit-platform-launcher</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <!-- Allure: Rest Assured integration -->

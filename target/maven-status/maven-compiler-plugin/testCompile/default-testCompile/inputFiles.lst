@@ -1,0 +1,13 @@
+/Users/resource.frodrigues/Documents/AutoCypress/autRest/src/test/java/models/DogApiResponse.java
+/Users/resource.frodrigues/Documents/AutoCypress/autRest/src/test/java/services/DogApiService.java
+/Users/resource.frodrigues/Documents/AutoCypress/autRest/src/test/java/tests/DogApiBreedImagesTest.java
+/Users/resource.frodrigues/Documents/AutoCypress/autRest/src/test/java/tests/DogApiBreedsImageRandomTest.java
+/Users/resource.frodrigues/Documents/AutoCypress/autRest/src/test/java/tests/DogApiBreedsListTest.java
+/Users/resource.frodrigues/Documents/AutoCypress/autRest/src/test/java/utils/BaseTest.java
+/Users/resource.frodrigues/Documents/AutoCypress/autRest/src/test/java/utils/DogApiAssertions.java
+/Users/resource.frodrigues/Documents/AutoCypress/autRest/src/test/java/utils/config/EnvironmentConfigLoader.java
+/Users/resource.frodrigues/Documents/AutoCypress/autRest/src/test/java/utils/config/TestEnvironment.java
+/Users/resource.frodrigues/Documents/AutoCypress/autRest/src/test/java/utils/data/BreedDataFactory.java
+/Users/resource.frodrigues/Documents/AutoCypress/autRest/src/test/java/utils/logging/AllureRequestResponseFilter.java
+/Users/resource.frodrigues/Documents/AutoCypress/autRest/src/test/java/utils/rest/RequestSpecificationFactory.java
+/Users/resource.frodrigues/Documents/AutoCypress/autRest/src/test/java/utils/schema/JsonSchemaAssertions.java

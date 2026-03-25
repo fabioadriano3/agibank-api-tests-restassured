@@ -1,0 +1,1 @@
+{"uuid":"19c28611-1ef4-435f-a4e9-4d7c30028094","name":"DogApiBreedsListTest","children":["efd2dfc6-4d77-4c59-b858-06be0725fd8c","dfbd6d4d-b2b2-4e26-b083-e9bd954fc61e"],"befores":[{"name":"globalSetUp","status":"passed","stage":"finished","steps":[],"attachments":[],"parameters":[],"start":1774450713491,"stop":1774450714193}],"afters":[],"start":1774450713469,"stop":1774450715859}
