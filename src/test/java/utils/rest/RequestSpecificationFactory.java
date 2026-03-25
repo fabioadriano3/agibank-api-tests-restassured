@@ -19,7 +19,7 @@ public final class RequestSpecificationFactory {
                 // Allure: anexar request/response no reporte.
                 .addFilter(new AllureRestAssured())
                 // Estrutura extra: anexar apenas falhas e logs estruturados no console.
-                .addFilter(new AllureRequestResponseFilter())
+               // .addFilter(new AllureRequestResponseFilter())
                 // Logs detalhados para debug local (pode ser reduzido via LogDetail).
                 .log(LogDetail.ALL)
                 .build();
