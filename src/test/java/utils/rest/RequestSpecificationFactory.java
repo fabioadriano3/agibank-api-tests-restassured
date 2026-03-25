@@ -15,8 +15,6 @@ public final class RequestSpecificationFactory {
         // Centraliza baseUri e timeouts para facilitar manutencao.
         return new RequestSpecBuilder()
                 .setBaseUri(environment.baseUri())
-                .setConnectTimeout(environment.timeoutConnectMillis())
-                .setResponseTimeout(environment.timeoutReadMillis())
                 .setRelaxedHTTPSValidation()
                 // Allure: anexar request/response no reporte.
                 .addFilter(new AllureRestAssured())

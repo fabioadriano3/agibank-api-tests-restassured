@@ -3,12 +3,13 @@ package utils.logging;
 import io.qameta.allure.Allure;
 import io.restassured.filter.Filter;
 import io.restassured.filter.FilterContext;
-import io.restassured.filter.FilterableRequestSpecification;
-import io.restassured.filter.FilterableResponseSpecification;
 import io.restassured.response.Response;
+import io.restassured.specification.FilterableRequestSpecification;
+import io.restassured.specification.FilterableResponseSpecification;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -34,7 +35,7 @@ public class AllureRequestResponseFilter implements Filter {
         if (statusCode >= 400) {
             String correlationId = UUID.randomUUID().toString();
             String uri = resolveUri(requestSpec);
-            String method = requestSpec.getMethod();
+            String method = safeInvokeToString(requestSpec, "getMethod", "UNKNOWN_METHOD");
 
             Allure.addAttachment(
                     "Request",
@@ -49,15 +50,26 @@ public class AllureRequestResponseFilter implements Filter {
     }
 
     private static String resolveUri(FilterableRequestSpecification requestSpec) {
-        // Preferimos a URL final montada pelo Rest Assured.
-        try {
-            if (requestSpec.getURI() != null) {
-                return requestSpec.getURI().toString();
-            }
-        } catch (Exception ignored) {
-            // Fallback abaixo.
+        // Evita dependencia de metodos especificos do RestAssured entre versoes.
+        String uri = safeInvokeToString(requestSpec, "getURI", null);
+        if (uri != null && !uri.isBlank()) {
+            return uri;
         }
-        return "<unknown-uri>";
+
+        // Fallback razoavel: retorna a representacao do requestSpec.
+        return requestSpec.toString();
+    }
+
+    private static String safeInvokeToString(Object target, String methodName, String defaultValue) {
+        try {
+            Method m = target.getClass().getMethod(methodName);
+            Object value = m.invoke(target);
+            if (value == null) return defaultValue;
+            String s = String.valueOf(value);
+            return s.isBlank() ? defaultValue : s;
+        } catch (Exception ignored) {
+            return defaultValue;
+        }
     }
 
     private static void logStructuredFailure(
